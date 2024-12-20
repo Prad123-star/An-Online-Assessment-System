@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        form{
+        
+    margin: 100;
+    padding: 100;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+   
+}
+
+body {
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+    background-color:dodgerblue;
+}
+
+input {
+    text-decoration: none;
+    color: inherit;
+    size:0cqmax;
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center><form>
+        {%csrf_token %}
+        <div style="width: 35%;margin: auto;border: 2px solid black;padding: 15px;background-color: cadetblue;margin-top: 200px;">
+            <h1 class="display-4">Login</h1>
+
+        <input size="30px" type="text" name="username" placeholder="enter username"> <br><br>
+
+        <input size="30px" height="40px" type="password" name="password" placeholder="enter password"> <br><br>
+
+        <input size="30px" type="submit" value="sign in" formaction="/loginapp/login/" formmethod="post">
+        <input size="30px" type="submit" value="sign up" formaction="/loginapp/saveUser/" formmethod="get">
+     </form></center>
+     <span style="color: red; font-size: large;"> <center> {{message}} </center> </span>   
+</body>
+</html>

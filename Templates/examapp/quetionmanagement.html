@@ -1,0 +1,117 @@
+<html>
+
+<head>
+
+    <style>
+        /* General body styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Center the content */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        /* Form styles */
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        /* Input fields styling */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 48%;
+            padding: 12px;
+            margin: 10px 1%;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        input[type="submit"]:active {
+            background-color: #0056b3;
+        }
+
+        /* Red text message */
+        .message {
+            color: red;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Link styles */
+        a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #007bff;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        /* Spacing between elements */
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form onsubmit="return confirm('do you want to continue?')" >
+
+        <center><input name="qno" placeholder="Enter a qno" value="{{quetion.qno}}" style="width: 300px;"><br><br>
+        <input name="qtext" placeholder="Enter a quetion" value="{{quetion.qtext}}"style="width: 300px;"><br><br>
+        <input name="answer" placeholder="Enter a answer" value="{{quetion.answer}}"style="width: 300px;"><br><br>
+        <input name="op1" placeholder="Enter a op1" value="{{quetion.op1}}"style="width: 300px;"><br><br>
+        <input name="op2" placeholder="Enter a op2" value="{{quetion.op2}}"style="width: 300px;"><br><br>
+        <input name="op3" placeholder="Enter a op3" value="{{quetion.op3}}"style="width: 300px;"><br><br>
+        <input name="op4" placeholder="Enter a op4" value="{{quetion.op4}}"style="width: 300px;"><br><br>
+        <input name="subject" placeholder="Enter subject" value="{{quetion.subject}}"style="width: 300px;"></center>
+
+        <input type="submit" value="addQuetion" formaction="/examapp/addQuetion">
+        <input type="submit" value="viewQuetion" formaction="/examapp/viewQuetion">
+        <input type="submit" value="updateQuetion" formaction="/examapp/updateQuestion">
+      
+        <input type="submit" value="deleteQuetion"  formaction="/examapp/deleteQuetion" >
+
+    </form>
+
+    <center><span style="color:red;font-size: 30px;"> {{message}} </span></center>
+    
+</body>
+
+<a href="/examapp/givemepage3"> go to admin dashboard</a>
+
+</html>

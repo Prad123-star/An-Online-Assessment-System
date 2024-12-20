@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>   
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            width: 40%;
+            padding: 20px;
+            border: 2px solid #007bff;
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        input[type="text"],
+        input[type="radio"] + span {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+        }
+
+        input[type="radio"] {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            width: 30%;
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .message {
+            color: red;
+            font-size: large;
+            text-align: center;
+        }
+    
+    </style>
+
+
+    <script>
+             var xmlhttp;
+
+function getRemainingTime()
+{
+    xmlhttp= new XMLHttpRequest();
+
+    xmlhttp.onload=showtime;
+    
+    xmlhttp.open("get","/examapp/showRemainingTime/",true);
+    
+    xmlhttp.send();
+    
+}
+
+function showtime()
+{
+    
+    //alert(xmlhttp.responseText);
+    
+    if(xmlhttp.readyState==4 && xmlhttp.status==200){
+
+        var timetodisplay=xmlhttp.responseText
+        var minute=Math.floor(timetodisplay/60) 
+        var seconds=timetodisplay%60
+        document.questionform.show.value=minute + ":" + seconds;
+        
+        if(xmlhttp.responseText==0)
+        {
+            alert("Time Up !!")
+            //xmlhttp.open("get","endexam",true);
+            window.location.href="/examapp/endexam/";
+        }
+        
+        
+    }
+}
+
+
+setInterval(getRemainingTime,1000);
+    </script>
+</head>
+  
+<body>
+    <form name="questionform">
+        remaining time :-  <input name="show" type="text" value="3 minutes">
+    <input type="text" name="qno" value="{{quetion.qno}}"> <br><br>
+    <input type="text" name="qtext" value="{{quetion.qtext}}"> <br><br>
+    <input hidden="text" name="answer" value="{{quetion.answer}}"> <br><br>
+    <input type="radio" name="op" value="{{quetion.op1}}" {% if previousanswer == quetion.op1 %} checked {% endif %}> <span>{{quetion.op1}}</span>
+    <input type="radio" name="op" value="{{quetion.op2}}" {% if previousanswer == quetion.op2 %} checked {% endif %}> <span>{{quetion.op2}}</span>
+    <input type="radio" name="op" value="{{quetion.op3}}" {% if previousanswer == quetion.op3 %} checked {% endif %}> <span>{{quetion.op3}}</span>
+    <input type="radio" name="op" value="{{quetion.op4}}" {% if previousanswer == quetion.op4 %} checked {% endif %}> <span>{{quetion.op4}}</span><br><br>
+
+    <input type="submit" value="next" formaction="/examapp/nextQuetion/">
+    <input type="submit" value="previous" formaction="/examapp/previousQuetion/">
+    <input type="submit" value="endexam" formaction="/examapp/endexam/">
+    </form>
+    <span style="color: red; font-size: large;"> {{message}} </span>  
+</body>
+</html>

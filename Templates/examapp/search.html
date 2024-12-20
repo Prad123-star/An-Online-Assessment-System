@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          background-color: #f7f9fc;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin: 0;
+          padding: 20px;
+        }
+    
+        h1 {
+          color: #007bff;
+          margin-bottom: 20px;
+        }
+    
+        a {
+          display: inline-block;
+          padding: 10px 20px;
+          margin: 5px;
+          border: 1px solid #007bff;
+          border-radius: 4px;
+          background-color: #007bff;
+          color: white;
+          text-decoration: none;
+          font-size: 1.2em;
+          text-align: center;
+          cursor: pointer;
+        }
+    
+        a:hover {
+          background-color: #0056b3;
+          border-color: #0056b3;
+        }
+    
+        table {
+          width: 80%;
+          border-collapse: collapse;
+          margin: 20px 0;
+        }
+    
+        th, td {
+          border: 1px solid grey;
+          padding: 10px;
+          text-align: left;
+        }
+    
+        th {
+          background-color: #007bff;
+          color: white;
+        }
+    
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+    
+        tr:hover {
+          background-color: #ddd;
+        }
+      </style>
+</head>
+  
+
+<center><h1> Result Analysis</h1></center>
+
+{% for pageno in listofint %}
+
+        <center><a href="/examapp/search/{{pageno}}"> {{pageno}} </a></center>
+    
+{% endfor %}
+
+
+<center><table>
+
+    <tr>
+     <th>username</th>
+     <th>subject</th>
+     <th>score</th>
+     
+   </tr>
+ 
+     {% for result in results %}
+ 
+         <tr>
+                 <td> {{result.username}} </td>
+                 <td> {{result.subject}} </td>
+                 <td> {{result.score}} </td>
+                 
+ 
+         </tr>
+ 
+     {% endfor %}
+ 
+ </table></center>
+
+<center><a href="/examapp/giveMePage3"> go to admin dashboard </a></center>
+</html>
